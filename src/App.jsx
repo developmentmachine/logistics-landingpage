@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import logisticsFleet from "../resources/1.jpg";
+import warehouseScene from "../resources/2.jpg";
+import driverScene from "../resources/3.jpg";
 
 const services = [
   {
@@ -216,7 +219,7 @@ function ImageBand() {
     <section className="image-band">
       <div className="container image-band-grid">
         <div className="image-frame tall">
-          <img src="/resources/3.jpg" alt="物流工作人员与运输车辆场景" />
+          <img src={driverScene} alt="物流工作人员与运输车辆场景" />
         </div>
         <div className="image-band-copy">
           <p className="eyebrow">Reliable Delivery</p>
@@ -276,14 +279,14 @@ function Network() {
 
         <div className="network-layout">
           <div className="network-card large-photo">
-            <img src="/resources/1.jpg" alt="物流车队与运输资源展示" />
+            <img src={logisticsFleet} alt="物流车队与运输资源展示" />
             <div>
               <h3>全国干线调度</h3>
               <p>主流城市与产业带之间快速组织车辆，满足跨区域运输计划。</p>
             </div>
           </div>
           <div className="network-card">
-            <img src="/resources/2.jpg" alt="物流仓储与车辆运输场景" />
+            <img src={warehouseScene} alt="物流仓储与车辆运输场景" />
             <div>
               <h3>仓配协同能力</h3>
               <p>围绕仓储、分拣、配送节点，打通从库内到末端的履约链路。</p>
