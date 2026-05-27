@@ -1,0 +1,31 @@
+{
+  "name": "yunman-logistics-landing",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/developmentmachine/logistics-landingpage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/developmentmachine/logistics-landingpage/issues"
+  },
+  "homepage": "https://github.com/developmentmachine/logistics-landingpage#readme",
+  "dependencies": {
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.2",
+    "vite": "^8.0.14"
+  },
+  "private": true,
+  "type": "module"
+}
