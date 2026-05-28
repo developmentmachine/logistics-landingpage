@@ -1,0 +1,57 @@
+name: Deploy to serv00
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-serv00-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    env:
+      SERV00_HOST: ${{ secrets.SERV00_HOST }}
+      SERV00_USER: ${{ secrets.SERV00_USER }}
+      SERV00_TARGET_DIR: ${{ secrets.SERV00_TARGET_DIR }}
+      SERV00_PORT: ${{ secrets.SERV00_PORT || '22' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Start ssh-agent and add key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SERV00_SSH_KEY }}
+
+      - name: Add serv00 host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "$SERV00_PORT" "$SERV00_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy dist via rsync
+        run: |
+          if [ -z "$SERV00_HOST" ] || [ -z "$SERV00_USER" ] || [ -z "$SERV00_TARGET_DIR" ]; then
+            echo "Missing required secrets: SERV00_HOST, SERV00_USER, SERV00_TARGET_DIR"
+            exit 1
+          fi
+          rsync -az --delete -e "ssh -p $SERV00_PORT" dist/ "$SERV00_USER@$SERV00_HOST:$SERV00_TARGET_DIR/"
