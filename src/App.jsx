@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { LogoMark } from "./components/Logo.jsx";
 import logisticsFleet from "../resources/1.jpg";
 import warehouseScene from "../resources/2.jpg";
 import driverScene from "../resources/3.jpg";
@@ -48,10 +49,13 @@ const navItems = [
   ["#process", "合作流程"],
 ];
 
+const CONTACT_PHONE = "13522315203";
+const CONTACT_EMAIL = "2371224452@qq.com";
+
 function Brand({ footer = false }) {
   return (
     <a className={`brand ${footer ? "footer-brand" : ""}`} href="#top" aria-label="运满物流首页">
-      <span className="brand-mark">运</span>
+      <LogoMark />
       <span>
         <strong>运满物流</strong>
         <small>Yunman Logistics</small>
@@ -354,12 +358,12 @@ function Contact() {
             为你梳理更稳妥的运输组织方式。
           </p>
           <div className="contact-methods">
-            <a href="tel:400-800-6688">
-              <strong>400-800-6688</strong>
+            <a href={`tel:${CONTACT_PHONE}`}>
+              <strong>{CONTACT_PHONE}</strong>
               <span>服务热线</span>
             </a>
-            <a href="mailto:service@yunman-logistics.com">
-              <strong>service@yunman-logistics.com</strong>
+            <a href={`mailto:${CONTACT_EMAIL}`}>
+              <strong>{CONTACT_EMAIL}</strong>
               <span>商务合作邮箱</span>
             </a>
           </div>
