@@ -7,4 +7,4 @@ Allow: /
 User-agent: Baiduspider
 Allow: /
 
-Sitemap: https://aifun.serv00.net/sitemap.xml
+Sitemap: https://yunman.server00.com/sitemap.xml

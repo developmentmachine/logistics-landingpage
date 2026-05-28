@@ -19,8 +19,9 @@ jobs:
     env:
       SERV00_HOST: ${{ secrets.SERV00_HOST }}
       SERV00_USER: ${{ secrets.SERV00_USER }}
-      SERV00_TARGET_DIR: ${{ secrets.SERV00_TARGET_DIR }}
       SERV00_PORT: ${{ secrets.SERV00_PORT || '22' }}
+      # 部署到 yunman（aifun.serv00.net 已停用）
+      SERV00_TARGET_DIR: ~/domains/yunman.server00.com/public_html
 
     steps:
       - name: Checkout
@@ -50,8 +51,8 @@ jobs:
 
       - name: Deploy dist via rsync
         run: |
-          if [ -z "$SERV00_HOST" ] || [ -z "$SERV00_USER" ] || [ -z "$SERV00_TARGET_DIR" ]; then
-            echo "Missing required secrets: SERV00_HOST, SERV00_USER, SERV00_TARGET_DIR"
+          if [ -z "$SERV00_HOST" ] || [ -z "$SERV00_USER" ]; then
+            echo "Missing required secrets: SERV00_HOST, SERV00_USER"
             exit 1
           fi
           rsync -az --delete -e "ssh -p $SERV00_PORT" dist/ "$SERV00_USER@$SERV00_HOST:$SERV00_TARGET_DIR/"
