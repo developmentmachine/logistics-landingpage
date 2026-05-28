@@ -20,8 +20,8 @@ jobs:
       SERV00_HOST: ${{ secrets.SERV00_HOST }}
       SERV00_USER: ${{ secrets.SERV00_USER }}
       SERV00_PORT: ${{ secrets.SERV00_PORT || '22' }}
-      # 部署到 yunman（aifun.serv00.net 已停用）
-      SERV00_TARGET_DIR: ~/domains/yunman.server00.com/public_html
+      # 部署到 aifun.serv00.net
+      SERV00_TARGET_DIR: ~/domains/aifun.serv00.net/public_html
 
     steps:
       - name: Checkout
